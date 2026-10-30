@@ -1,5 +1,5 @@
 // Contenido del diario. Cada entrada es el HTML de una página.
-// Editá los textos libremente; las imágenes están en assets/img/.
+// Editá los textos libremente; las imágenes están en .
 
 const heart = (fill) => `<svg width="24" height="22" viewBox="0 0 26 24" aria-hidden="true"><path d="M13 22 C 2 13, 4 3, 9 4 C 12 4.5, 13 7, 13 8 C 13 7, 14 4.5, 17 4 C 22 3, 24 13, 13 22 Z" fill="${fill || 'none'}" stroke="#8A2437" stroke-width="1.4" stroke-linejoin="round"/></svg>`;
 const star = (stroke) => `<svg width="18" height="18" viewBox="0 0 22 22" aria-hidden="true"><path d="M11 2 L13 8 L19 8.5 L14.5 12.5 L16 19 L11 15 L6 19 L7.5 12.5 L3 8.5 L9 8 Z" fill="none" stroke="${stroke || '#C07E92'}" stroke-width="1.5" stroke-linejoin="round"/></svg>`;
@@ -19,7 +19,7 @@ export const PAGES = [
   <p class="small" style="margin-top:6px">pretty girls study hard</p>
   <div class="strap"></div>
   <div class="lock"><svg width="56" height="66" viewBox="0 0 66 78"><path d="M33 30 C 20 12, 2 20, 10 38 C 15 50, 33 60, 33 60 C 33 60, 51 50, 56 38 C 64 20, 46 12, 33 30 Z" fill="#E7C879" stroke="#CBA84E" stroke-width="2"/><circle cx="33" cy="40" r="4" fill="#B8933F"/><rect x="31" y="42" width="4" height="9" rx="1.5" fill="#B8933F"/></svg></div>
-  <img src="assets/img/cherub.png" alt="angelito" style="position:absolute;top:12px;left:12px;width:84px;transform:rotate(-8deg);filter:drop-shadow(0 6px 9px rgba(0,0,0,.28))">
+  <img src="cherub.png" alt="angelito" style="position:absolute;top:12px;left:12px;width:84px;transform:rotate(-8deg);filter:drop-shadow(0 6px 9px rgba(0,0,0,.28))">
 </div>`,
 
 // 1 — QUIÉN SOY
@@ -42,10 +42,10 @@ export const PAGES = [
     </div>
     <div style="display:flex;flex-direction:column;align-items:center;gap:20px">
       <div style="position:relative;transform:rotate(3deg)">
-        <div class="photo"><img src="assets/img/mica.jpg" alt="Micaela" style="display:block;width:150px;height:190px;object-fit:cover;object-position:center 20%;filter:sepia(.07) saturate(.97)"><p style="text-align:center;font-size:19px;margin:3px 0 0">yo :)</p></div>
+        <div class="photo"><img src="mica.jpg" alt="Micaela" style="display:block;width:150px;height:190px;object-fit:cover;object-position:center 20%;filter:sepia(.07) saturate(.97)"><p style="text-align:center;font-size:19px;margin:3px 0 0">yo :)</p></div>
         <div class="tape" style="top:-8px;left:50%;transform:translateX(-50%) rotate(-5deg);width:56px;height:17px"></div>
       </div>
-      <img src="assets/img/pretty.png" alt="pretty girls study hard" style="width:140px;transform:rotate(-4deg);filter:drop-shadow(0 5px 8px rgba(0,0,0,.16))">
+      <img src="pretty.png" alt="pretty girls study hard" style="width:140px;transform:rotate(-4deg);filter:drop-shadow(0 5px 8px rgba(0,0,0,.16))">
     </div>
   </div>
 </div>`,
@@ -75,7 +75,7 @@ export const PAGES = [
         <div class="js-sel" style="font-size:26px;line-height:1;margin-bottom:6px">oncología</div>
         <p class="body js-blurb" style="margin:0;font-size:17px">el centro de todo. entender cómo crecen los tumores y cómo podríamos frenarlos.</p>
       </div>
-      <img src="assets/img/brain.png" alt="cerebro" style="width:104px;transform:rotate(-5deg);filter:drop-shadow(0 5px 8px rgba(0,0,0,.2))">
+      <img src="brain.png" alt="cerebro" style="width:104px;transform:rotate(-5deg);filter:drop-shadow(0 5px 8px rgba(0,0,0,.2))">
     </div>
   </div>
 </div>`,
@@ -93,7 +93,7 @@ export const PAGES = [
     </div>
     <div style="display:flex;justify-content:center;padding-top:6px">
       <div style="position:relative;transform:rotate(4deg)">
-        <img src="assets/img/heart.png" alt="corazón anatómico" style="width:120px;filter:drop-shadow(0 7px 11px rgba(0,0,0,.2))">
+        <img src="heart.png" alt="corazón anatómico" style="width:120px;filter:drop-shadow(0 7px 11px rgba(0,0,0,.2))">
         <div class="tape" style="top:6px;left:50%;transform:translateX(-50%) rotate(-6deg);width:44px;height:15px"></div>
       </div>
     </div>
@@ -142,7 +142,7 @@ export const PAGES = [
       </div>
     </div>
     <div style="display:flex;flex-direction:column;align-items:center;gap:14px">
-      <img src="assets/img/note.jpg" alt="you still have a lot of time" style="width:180px;transform:rotate(3deg);filter:drop-shadow(0 5px 9px rgba(0,0,0,.14))">
+      <img src="note.jpg" alt="you still have a lot of time" style="width:180px;transform:rotate(3deg);filter:drop-shadow(0 5px 9px rgba(0,0,0,.14))">
       <div class="note" style="transform:rotate(-1deg);width:100%">
         <p class="accent" style="font-size:26px;margin:0 0 5px;display:flex;align-items:center;gap:7px">plan 2026 ${star('#E7C879')}</p>
         <label class="todo"><input type="checkbox" checked> <span class="strike">participar del PMI Tour BA</span></label>

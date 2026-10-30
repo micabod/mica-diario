@@ -1,7 +1,7 @@
 /* ===== Fuente propia ===== */
 @font-face {
   font-family: "Mica";
-  src: url("assets/fonts/mimpi.ttf") format("truetype");
+  src: url("mimpi.ttf") format("truetype");
   font-display: swap;
 }
 
