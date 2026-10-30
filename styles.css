@@ -1,0 +1,126 @@
+/* ===== Fuente propia ===== */
+@font-face {
+  font-family: "Mica";
+  src: url("assets/fonts/mimpi.ttf") format("truetype");
+  font-display: swap;
+}
+
+* { box-sizing: border-box; }
+html, body { margin: 0; height: 100%; overflow: hidden; background: #0f0d10; }
+body {
+  font-family: "Mica", "Comic Sans MS", cursive;
+  color: #2E3650;
+}
+
+/* fondo tipo escritorio con profundidad */
+#app {
+  position: fixed; inset: 0;
+  background:
+    radial-gradient(130% 90% at 50% 12%, #e7d9cf 0%, #d3c2b6 55%, #b9a699 100%);
+}
+#app > div { outline: none; }
+
+/* ===== Hoja 3D (cada "leaf" del libro) ===== */
+.leaf { position: absolute; width: 520px; height: 680px; transform-style: preserve-3d; }
+.face {
+  position: absolute; inset: 0;
+  backface-visibility: hidden; -webkit-backface-visibility: hidden;
+  border-radius: 3px 10px 10px 3px;
+  overflow: hidden;
+  box-shadow: 0 30px 60px -30px rgba(40,25,25,.55);
+}
+.face.back { transform: rotateY(180deg); }
+
+/* reverso de hoja: papel con renglones */
+.paperback {
+  width: 100%; height: 100%;
+  background-color: #F4EBDB;
+  background-image: repeating-linear-gradient(to bottom, transparent 0 30px, rgba(70,90,135,.08) 30px 31px);
+}
+
+/* ===== Página del diario ===== */
+.diarypage {
+  width: 100%; height: 100%;
+  position: relative;
+  background-color: #F7EFE0;
+  background-image:
+    repeating-linear-gradient(to bottom, transparent 0 30px, rgba(70,90,135,.09) 30px 31px),
+    linear-gradient(90deg, transparent 0 54px, rgba(192,110,125,.26) 54px 55px, transparent 55px);
+  background-position: 0 14px, 0 0;
+  border: 1px solid #E7DAC2;
+  padding: 30px 30px 30px 64px;
+}
+.diarypage .spine {
+  position: absolute; left: 0; top: 0; bottom: 0; width: 40px;
+  background: linear-gradient(to right, rgba(95,60,55,.22), rgba(95,60,55,0));
+  pointer-events: none;
+}
+
+.row { display: flex; align-items: baseline; justify-content: space-between; gap: 6px; flex-wrap: wrap; }
+.title { margin: 0; font-size: 42px; line-height: .98; color: #2E3650; }
+.date { font-size: 15px; color: #A98D88; display: inline-block; transform: rotate(1.5deg); }
+.accent { color: #8A2437; }
+.green { color: #4C5A3E; }
+.muted { color: #9C8C84; }
+.body { font-size: 18px; line-height: 1.45; margin: 0 0 9px; }
+.grid2 { display: grid; grid-template-columns: 1.2fr .8fr; gap: 22px; margin-top: 12px; align-items: start; }
+
+.tape {
+  position: absolute; background: rgba(226,205,180,.55);
+  border: 1px solid rgba(180,150,120,.3); box-shadow: 0 2px 4px rgba(0,0,0,.06);
+}
+.photo { background:#FFFDF6; padding:8px 8px 6px; border:1px solid #E7DAC2; box-shadow:0 14px 24px -18px rgba(60,40,40,.5); }
+.ficha-card { background:#FDF8EC; border:1.5px dashed #D3A98C; border-radius:7px; padding:13px 16px; }
+
+.chip {
+  font: inherit; font-size: 16px; padding: 6px 12px; border-radius: 16px; cursor: pointer;
+  background:#FDF8EC; color:#5A5343; border:1.5px solid #D3C4A6;
+}
+.chip[aria-pressed="true"] { background:#8A2437; color:#FBF2E7; border-color:#8A2437; }
+.chips { display:flex; flex-wrap:wrap; gap:7px; }
+
+.note { background:#FFFDF6; border:1px solid #E7DAC2; border-radius:6px; padding:16px 18px; box-shadow:0 12px 22px -20px rgba(60,40,40,.5); }
+.todo { display:flex; align-items:flex-start; gap:9px; font-size:17px; line-height:1.3; padding:2px 0; cursor:pointer; }
+.todo input { width:16px; height:16px; margin-top:3px; accent-color:#8A2437; }
+.strike { text-decoration: line-through; text-decoration-color:#B06A80; opacity:.6; }
+.linkbtn { font: inherit; text-decoration:none; display:inline-flex; gap:7px; background:#7E96A0; color:#FBF2E7; padding:7px 15px; border-radius:20px; font-size:17px; }
+
+/* ===== Tapa ===== */
+.cover {
+  width:100%; height:100%; position:relative; overflow:hidden;
+  background:#E0A0B1;
+  display:flex; flex-direction:column; align-items:center; justify-content:center;
+  text-align:center; padding:40px 48px; border-radius:3px 10px 10px 3px;
+}
+.cover .edge { position:absolute; right:0; top:14px; bottom:14px; width:12px;
+  background: repeating-linear-gradient(to bottom,#EBD094 0 2px,#D7B471 2px 4px); border-radius:0 6px 6px 0; }
+.cover .frame { position:absolute; inset:20px 26px; border:1.5px solid rgba(197,127,146,.5); border-radius:6px; }
+.cover h1 { font-size:88px; line-height:.9; color:#FCECF0; margin:0; text-shadow:0 2px 3px rgba(140,70,90,.45); }
+.cover .sub { font-size:24px; color:#FCECF0; margin:10px 0 0; text-shadow:0 1px 2px rgba(140,70,90,.4); }
+.cover .small { font-size:19px; color:#FBE9EE; margin:0; text-shadow:0 1px 2px rgba(140,70,90,.35); }
+.cover .strap { position:absolute; top:50%; right:0; transform:translateY(-50%); width:44%; height:26px;
+  background:#D98EA1; box-shadow: inset 0 2px 4px rgba(255,255,255,.2), 0 3px 6px rgba(120,60,70,.3); }
+.cover .lock { position:absolute; top:50%; left:36%; transform:translateY(-50%); }
+
+/* ===== UI (fuera del 3D) ===== */
+#ui {
+  position: fixed; left: 50%; bottom: 22px; transform: translateX(-50%);
+  display: flex; align-items: center; gap: 14px; z-index: 10;
+  font-family: "Mica", cursive;
+}
+#ui button {
+  font: inherit; font-size: 19px; cursor: pointer; border: none;
+  background: rgba(192,126,146,.95); color: #FBF2E7; padding: 9px 18px; border-radius: 22px;
+  box-shadow: 0 6px 16px -6px rgba(0,0,0,.4);
+}
+#ui button:hover { background: #b06a80; }
+#ui button:disabled { opacity: .4; cursor: default; }
+#counter { font-size: 18px; color: #4a3b38; background: rgba(255,255,255,.7); padding: 6px 12px; border-radius: 14px; }
+#hint {
+  position: fixed; top: 16px; left: 50%; transform: translateX(-50%); z-index: 10;
+  font-size: 15px; color: #4a3b38; background: rgba(255,255,255,.6); padding: 6px 14px; border-radius: 14px;
+}
+#loading {
+  position: fixed; inset: 0; display: flex; align-items: center; justify-content: center;
+  font-size: 26px; color: #6a564f; z-index: 20; background: #e2d4c9;
+}

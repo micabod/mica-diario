@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>El diario de Mica — Micaela Bodner</title>
+  <link rel="stylesheet" href="styles.css">
+  <script type="importmap">
+  {
+    "imports": {
+      "three": "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js",
+      "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"
+    }
+  }
+  </script>
+</head>
+<body>
+  <div id="loading">abriendo el diario…</div>
+  <div id="app"></div>
+
+  <div id="hint">arrastrá para girar el libro en 3D · flechas ← → para pasar página</div>
+  <div id="ui">
+    <button id="prev" aria-label="Página anterior">‹ volver</button>
+    <span id="counter">tapa</span>
+    <button id="next" aria-label="Página siguiente">pasar ›</button>
+  </div>
+
+  <script type="module" src="src/main.js"></script>
+</body>
+</html>
