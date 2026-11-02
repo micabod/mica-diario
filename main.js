@@ -1,34 +1,32 @@
 // Diario 3D — Three.js + CSS3DRenderer
-// Las páginas son HTML real (texto nítido, tu fuente, tus stickers) colocadas
-// como objetos en un espacio 3D que podés orbitar. Se pasan como las de un libro.
+// Páginas HTML reales (texto nítido, fuente propia, stickers) en un espacio 3D
+// que se orbita. Se pasan como las de un libro.
 
 import * as THREE from "three";
 import { CSS3DRenderer, CSS3DObject } from "three/addons/renderers/CSS3DRenderer.js";
 import { OrbitControls } from "three/addons/controls/OrbitControls.js";
 import { PAGES } from "./pages.js";
 
-const W = 520, H = 680;        // tamaño de cada hoja (px-mundo)
-const N = PAGES.length;         // cantidad de hojas (tapa + páginas)
-const SHEET = 1.6;              // grosor por hoja
-const LIFT = 90;                // cuánto se levanta la hoja al girar
+const W = 640, H = 860;        // hoja más grande => texto más legible
+const N = PAGES.length;
+const SHEET = 1.8;
+const LIFT = 110;
 
-// ---------- Escena ----------
 const scene = new THREE.Scene();
-const camera = new THREE.PerspectiveCamera(42, window.innerWidth / window.innerHeight, 1, 6000);
-camera.position.set(-280, 260, 1080);
+const camera = new THREE.PerspectiveCamera(40, window.innerWidth / window.innerHeight, 1, 7000);
+camera.position.set(-300, 240, 1180);
 
 const renderer = new CSS3DRenderer();
 renderer.setSize(window.innerWidth, window.innerHeight);
-const app = document.getElementById("app");
-app.appendChild(renderer.domElement);
+document.getElementById("app").appendChild(renderer.domElement);
 
 const controls = new OrbitControls(camera, renderer.domElement);
 controls.enablePan = false;
 controls.enableDamping = true;
 controls.dampingFactor = 0.08;
-controls.minDistance = 650;
-controls.maxDistance = 1900;
-controls.maxPolarAngle = Math.PI * 0.52;
+controls.minDistance = 560;
+controls.maxDistance = 2100;
+controls.maxPolarAngle = Math.PI * 0.54;
 controls.target.set(0, 0, 0);
 
 // sombra bajo el libro
@@ -41,30 +39,29 @@ shadow.position.set(0, -H / 2 - 8, 0);
 shadow.rotation.x = -Math.PI / 2;
 scene.add(shadow);
 
-// ---------- Hojas ----------
 const leaves = [];
-PAGES.forEach((html, i) => {
-  const pivot = new THREE.Group();      // bisagra en el lomo (x = 0)
+PAGES.forEach((html) => {
+  const pivot = new THREE.Group();
   const el = document.createElement("div");
   el.className = "leaf";
   el.innerHTML =
     '<div class="face front">' + html + "</div>" +
     '<div class="face back"><div class="paperback"></div></div>';
   const obj = new CSS3DObject(el);
-  obj.position.set(W / 2, 0, 0);        // el centro de la hoja queda a W/2 → borde izq en el lomo
+  obj.position.set(W / 2, 0, 0);
   pivot.add(obj);
   scene.add(pivot);
   leaves.push({ pivot: pivot, el: el });
 });
 
-let current = 0;                        // hoja visible (0 = tapa)
+let current = 0;
 let animating = false;
 
 function restackZ() {
   for (let i = 0; i < N; i++) {
     const p = leaves[i].pivot;
-    if (i < current) p.position.z = i * SHEET;             // pila izquierda (ya dadas vuelta)
-    else p.position.z = (N - 1 - i) * SHEET;               // pila derecha (la actual arriba)
+    if (i < current) p.position.z = i * SHEET;
+    else p.position.z = (N - 1 - i) * SHEET;
   }
 }
 restackZ();
@@ -100,15 +97,18 @@ function prev() {
   turnLeaf(lf, 0, () => { animating = false; restackZ(); });
 }
 
-// ---------- UI ----------
-const labels = ["tapa", "1 / 7", "2 / 7", "3 / 7", "4 / 7", "5 / 7", "6 / 7", "fin"];
+function label(i) {
+  if (i === 0) return "tapa";
+  if (i === N - 1) return "fin";
+  return i + " / " + (N - 2);
+}
 const btnPrev = document.getElementById("prev");
 const btnNext = document.getElementById("next");
 const counter = document.getElementById("counter");
 function updateUI() {
   btnPrev.disabled = current === 0;
   btnNext.disabled = current === N - 1;
-  counter.textContent = labels[current] || "";
+  counter.textContent = label(current);
 }
 btnPrev.addEventListener("click", prev);
 btnNext.addEventListener("click", next);
@@ -118,7 +118,6 @@ window.addEventListener("keydown", (e) => {
 });
 updateUI();
 
-// chips interactivos (intereses / humor)
 document.addEventListener("click", (e) => {
   const chip = e.target.closest(".chip");
   if (!chip) return;
@@ -134,7 +133,6 @@ document.addEventListener("click", (e) => {
   }
 });
 
-// ---------- Loop ----------
 function animate() {
   requestAnimationFrame(animate);
   controls.update();
@@ -148,7 +146,6 @@ window.addEventListener("resize", () => {
   renderer.setSize(window.innerWidth, window.innerHeight);
 });
 
-// sacar el cartel de "cargando" cuando la fuente esté lista
 const loading = document.getElementById("loading");
 function hideLoading() { if (loading) loading.style.display = "none"; }
 if (document.fonts && document.fonts.ready) {
