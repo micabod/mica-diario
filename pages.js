@@ -22,6 +22,21 @@ function ransom(str, size) {
   return out;
 }
 
+// título con letras recortadas reales (archivos ltr_*.png)
+const LT = { m:"ltr_m.png", i:"ltr_i.png", c:"ltr_c.png", a:"ltr_a.png", s:"ltr_s.png", d:"ltr_d.png", r:"ltr_r.png", y:"ltr_y.png" };
+function cutword(word, h) {
+  let out = "", k = 0;
+  for (const ch of word) {
+    if (ch === " ") { out += '<span style="display:inline-block;width:.3em"></span>'; continue; }
+    if (ch === "'" || ch === "’") { out += `<span style="display:inline-block;color:#fff;font-family:Georgia,serif;font-size:${Math.round(h*0.8)}px;margin:0 2px">’</span>`; continue; }
+    const src = LT[ch.toLowerCase()];
+    const r = ROT[k % ROT.length];
+    if (src) out += `<img src="${src}" alt="${ch}" style="height:${h}px;margin:0 2px;transform:rotate(${r}deg);filter:drop-shadow(1px 2px 2px rgba(0,0,0,.25))">`;
+    k++;
+  }
+  return out;
+}
+
 export const PAGES = [
 
 // 0 — TAPA (collage realista)
@@ -30,8 +45,8 @@ export const PAGES = [
   <img src="cherub.png" alt="angelito" style="position:absolute;top:26px;left:30px;width:96px;transform:rotate(-8deg);filter:drop-shadow(0 6px 9px rgba(0,0,0,.28))">
   <div style="position:absolute;top:34px;right:40px">${star('#FBE9EE')}</div>
   <div style="position:absolute;top:120px;right:70px">${star('#FBE9EE')}</div>
-  <div style="margin-bottom:10px">${ransom("Mica's", 56)}</div>
-  <div style="margin-bottom:16px">${ransom('diary', 52)}</div>
+  <div style="margin-bottom:12px">${cutword("Mica's", 60)}</div>
+  <div style="margin-bottom:18px">${cutword('diary', 56)}</div>
   <p class="small" style="font-size:26px;margin:0 0 18px">&amp; mi portfolio</p>
   <div style="display:flex;gap:10px;flex-wrap:wrap;justify-content:center;align-items:center">
     <span class="plate">FUTURA BIOTECNÓLOGA</span>
@@ -69,7 +84,7 @@ export const PAGES = [
     </div>
   </div>
   <div style="display:flex;gap:9px;flex-wrap:wrap;margin-top:14px;align-items:center">
-    <span class="tag">team gym</span><span class="tag">rosa / borgoña</span><span class="tag">papá &amp; hermano = role models</span>
+    <span class="tag">team gym</span><span class="tag">papá &amp; hermano = role models</span>
   </div>
 </div>`,
 
@@ -94,24 +109,24 @@ export const PAGES = [
 // 3 — LO QUE ME INTERESA (biotec, piel, neuro)
 `<div class="diarypage"><div class="spine"></div>
   <div class="row"><h2 class="title" style="transform:rotate(-1.5deg)">lo que me interesa</h2><span class="date">entrada n°3</span></div>
-  <p class="body" style="margin-top:6px">elegí biotecnología porque puedo meterme en todo esto a la vez ${heart('none')}</p>
+  <p class="body" style="margin-top:6px">elegí biotecnología porque me deja <span class="accent">crear soluciones</span> a los problemas del cuerpo. si una enfermedad no tiene cura, quiero poder <span class="accent">probar una</span>.</p>
   <div class="grid2" style="grid-template-columns:1fr .9fr">
     <div>
       <div class="chips js-chips">
-        <button class="chip" aria-pressed="true" data-sel="la piel &amp; skincare" data-blurb="entender cómo funciona la piel por dentro — lo que más me atrapa.">la piel &amp; skincare</button>
-        <button class="chip" data-sel="neurociencia" data-blurb="cómo aprende y funciona el cerebro. de acá nació Neurolearning.">neurociencia</button>
-        <button class="chip" data-sel="biotecnología" data-blurb="usar la biología para resolver problemas reales de salud.">biotecnología</button>
-        <button class="chip" data-sel="salud" data-blurb="todo lo que tenga que ver con cuidar el cuerpo y la gente.">salud</button>
-        <button class="chip" data-sel="backend" data-blurb="construir el motor detrás de las apps. que la tecnología sirva.">backend</button>
+        <button class="chip" aria-pressed="true" data-sel="crear soluciones" data-blurb="usar la biología para resolver problemas reales del cuerpo.">crear soluciones</button>
+        <button class="chip" data-sel="vacunas" data-blurb="me fascina la idea de crear vacunas — prevenir antes que curar.">vacunas</button>
+        <button class="chip" data-sel="genética" data-blurb="entender y editar el código de la vida para mejorar la salud.">genética</button>
+        <button class="chip" data-sel="la piel &amp; skincare" data-blurb="entender cómo funciona la piel por dentro.">la piel &amp; skincare</button>
+        <button class="chip" data-sel="neurociencia" data-blurb="cómo funciona el cerebro — de acá nació Neurolearning.">neurociencia</button>
       </div>
       <p class="sm muted" style="margin-top:16px">tocá cada ficha para ver qué me atrae ↑</p>
     </div>
     <div style="display:flex;flex-direction:column;align-items:center;gap:14px">
       <div class="note" style="transform:rotate(1deg);width:100%">
-        <div class="js-sel" style="font-size:34px;line-height:1;margin-bottom:8px">la piel &amp; skincare</div>
-        <p class="body js-blurb" style="margin:0;font-size:23px">entender cómo funciona la piel por dentro — lo que más me atrapa.</p>
+        <div class="js-sel" style="font-size:32px;line-height:1;margin-bottom:8px">crear soluciones</div>
+        <p class="body js-blurb" style="margin:0;font-size:23px">usar la biología para resolver problemas reales del cuerpo.</p>
       </div>
-      <img src="brain.png" alt="cerebro" style="width:120px;transform:rotate(-5deg);filter:drop-shadow(0 6px 9px rgba(0,0,0,.2))">
+      <svg width="72" height="150" viewBox="0 0 72 150" aria-hidden="true" style="transform:rotate(-4deg)"><g fill="none" stroke="#8A9B74" stroke-width="2.4" stroke-linecap="round"><path d="M24 6 C 62 36, 62 54, 24 84 C -14 114, -14 132, 24 150"/><path d="M48 6 C 10 36, 10 54, 48 84 C 86 114, 86 132, 48 150"/></g><g stroke="#B23A54" stroke-width="2.2" stroke-linecap="round"><line x1="28" y1="20" x2="44" y2="20"/><line x1="20" y1="40" x2="52" y2="40"/><line x1="24" y1="66" x2="48" y2="66"/><line x1="20" y1="92" x2="52" y2="92"/><line x1="28" y1="118" x2="44" y2="118"/></g></svg>
     </div>
   </div>
 </div>`,
@@ -178,18 +193,13 @@ export const PAGES = [
 `<div class="diarypage"><div class="spine"></div>
   <div style="text-align:center;display:flex;flex-direction:column;align-items:center;justify-content:center;height:100%">
     <p class="date" style="color:#B88C78;margin:0">última página</p>
-    <div style="display:flex;align-items:center;gap:12px;margin-top:4px">
-      <h2 class="bubble" style="font-size:72px">hablemos</h2>
-      ${heart('#B23A54')}
-    </div>
-    <p class="body green" style="margin:10px auto 0;max-width:20em">si algo de esto te resonó, escribime ${heart('none')}</p>
-    <div style="display:flex;flex-wrap:wrap;gap:11px;justify-content:center;margin-top:20px">
+    <h2 class="title" style="font-size:54px;margin:8px 0 0">contacto</h2>
+    <div style="display:flex;flex-wrap:wrap;gap:11px;justify-content:center;margin-top:22px">
       <a class="linkbtn" style="background:#8A2437;transform:rotate(-1deg)" href="https://www.linkedin.com/in/micabodner" target="_blank" rel="noopener">LinkedIn →</a>
       <a class="linkbtn" style="background:#333;transform:rotate(1deg)" href="https://github.com/micabod" target="_blank" rel="noopener">GitHub →</a>
       <a class="linkbtn" style="background:transparent;color:#4C5A3E;border:1.6px solid #B9A17E" href="mailto:micabodner@gmail.com">mail</a>
     </div>
-    <p style="font-size:28px;margin:22px 0 0;transform:rotate(-1deg)">con cariño, Mica</p>
-    <p class="sm muted" style="margin:8px 0 0">(este diario lo programé yo ${star('#C07E92')})</p>
+    <p style="font-size:28px;margin:24px 0 0;transform:rotate(-1deg)">— Mica</p>
   </div>
 </div>`
 

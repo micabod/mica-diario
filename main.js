@@ -13,8 +13,8 @@ const SHEET = 1.8;
 const LIFT = 110;
 
 const scene = new THREE.Scene();
-const camera = new THREE.PerspectiveCamera(40, window.innerWidth / window.innerHeight, 1, 7000);
-camera.position.set(-300, 240, 1180);
+const camera = new THREE.PerspectiveCamera(38, window.innerWidth / window.innerHeight, 1, 7000);
+camera.position.set(250, 120, 1120);
 
 const renderer = new CSS3DRenderer();
 renderer.setSize(window.innerWidth, window.innerHeight);
@@ -24,10 +24,10 @@ const controls = new OrbitControls(camera, renderer.domElement);
 controls.enablePan = false;
 controls.enableDamping = true;
 controls.dampingFactor = 0.08;
-controls.minDistance = 560;
+controls.minDistance = 700;
 controls.maxDistance = 2100;
 controls.maxPolarAngle = Math.PI * 0.54;
-controls.target.set(0, 0, 0);
+controls.target.set(W / 2, 0, 0);
 
 // sombra bajo el libro
 const shadowEl = document.createElement("div");
@@ -35,7 +35,7 @@ shadowEl.style.cssText =
   "width:" + (W * 2.1) + "px;height:" + (H * 0.9) + "px;border-radius:50%;" +
   "background:radial-gradient(closest-side, rgba(40,25,25,.42), rgba(40,25,25,0) 72%);";
 const shadow = new CSS3DObject(shadowEl);
-shadow.position.set(0, -H / 2 - 8, 0);
+shadow.position.set(W / 2, -H / 2 - 8, 0);
 shadow.rotation.x = -Math.PI / 2;
 scene.add(shadow);
 
