@@ -4,6 +4,12 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>El diario de Mica — Micaela Bodner</title>
+  <meta name="description" content="El diario/portfolio 3D de Micaela Bodner, futura biotecnóloga: quién soy, lo que dibujo, lo que me interesa y lo que construí.">
+  <meta property="og:title" content="El diario de Mica — Micaela Bodner">
+  <meta property="og:description" content="Un diario 3D que se hojea: mis dibujos, lo que me interesa y lo que construí.">
+  <meta property="og:type" content="website">
+  <meta name="theme-color" content="#E3A2B2">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 26 24'%3E%3Cpath d='M13 22 C 2 13, 4 3, 9 4 C 12 4.5, 13 7, 13 8 C 13 7, 14 4.5, 17 4 C 22 3, 24 13, 13 22 Z' fill='%23B23A54'/%3E%3C/svg%3E">
   <link rel="stylesheet" href="styles.css">
   <script type="importmap">
   {
@@ -25,6 +31,20 @@
     <button id="next" aria-label="Página siguiente">pasar ›</button>
   </div>
 
+  <div id="lightbox" hidden role="dialog" aria-modal="true" aria-label="Dibujo en grande">
+    <button class="lb-close" aria-label="Cerrar">×</button>
+    <button class="lb-prev" aria-label="Dibujo anterior">‹</button>
+    <figure><img alt=""><figcaption></figcaption></figure>
+    <button class="lb-next" aria-label="Dibujo siguiente">›</button>
+  </div>
+
+  <script>
+    // si en 15 s no cargó (sin internet, CDN caído), avisamos en vez de quedar colgados
+    setTimeout(function () {
+      var l = document.getElementById("loading");
+      if (l && l.style.display !== "none") l.textContent = "no se pudo abrir el diario — revisá la conexión y recargá la página";
+    }, 15000);
+  </script>
   <script type="module" src="main.js"></script>
 </body>
 </html>
